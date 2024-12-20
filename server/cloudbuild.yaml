@@ -1,0 +1,14 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  entrypoint: 'bash'
+  args: ['-c', 'docker pull asia-docker.pkg.dev/rushabshah-crun/ai/stable-diffusion-server:cache || exit 0']
+- name: 'gcr.io/cloud-builders/docker'
+  args: [
+            'build',
+            '-t', 'asia-docker.pkg.dev/rushabshah-crun/ai/stable-diffusion-server:latest',
+            '--cache-from', 'asia-docker.pkg.dev/rushabshah-crun/ai/stable-diffusion-server:cache',
+            '.'
+        ]
+images: ['asia-docker.pkg.dev/rushabshah-crun/ai/stable-diffusion-server:latest']
+options:
+  machineType: 'E2_HIGHCPU_8'

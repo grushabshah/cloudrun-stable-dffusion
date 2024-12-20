@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Stable Diffusion Web App</title>
+</head>
+<body>
+    <h1>Generate Image</h1>
+    <form method="POST">
+        <input type="text" name="prompt" placeholder="Enter prompt">
+        <button type="submit">Generate!</button>
+    </form>
+
+    {% if error %}  <!-- Check for errors first -->
+        <p style="color: red;">{{ error }}</p>  <!-- Display the error message -->
+    {% endif %}
+
+    {% if generated_image %}
+        <h2>Generated Image</h2>
+        <img id="generated_image" src="data:image/jpeg;base64,{{ generated_image }}" alt="Generated Image">
+    {% endif %}
+
+</body>
+</html>
